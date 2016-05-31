@@ -1,0 +1,33 @@
+[logging]
+ default = FILE:/var/log/krb5libs.log
+ kdc = FILE:/var/log/krb5kdc.log
+ admin_server = FILE:/var/log/kadmind.log
+
+[libdefaults]
+ default_realm = OURDOMAIN.NET
+ dns_lookup_realm = false
+ dns_lookup_kdc = false
+ ticket_lifetime = 24h
+ forwardable = yes
+
+[realms]
+ OURDOMAIN.NET = {
+  kdc = ad01.ourdomain.net
+  kdc = ad02.ourdomain.net
+  admin_server = ad.ourdomain.net:749
+  default_domain = ourdomain.net
+ }
+
+[domain_realm]
+ .ourdomain.net = OURDOMAIN.NET
+ ourdomain.net = OURDOMAIN.NET
+
+[appdefaults]
+ pam = {
+   debug = false
+   ticket_lifetime = 36000
+   renew_lifetime = 36000
+   forwardable = true
+   krb4_convert = false
+   validate = false
+ }

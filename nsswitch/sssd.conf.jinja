@@ -1,0 +1,39 @@
+[sssd]
+debug_level = 0
+config_file_version = 2
+reconnection_retries = 3
+
+sbus_timeout = 30
+services = nss, pam
+
+domains = default
+
+[nss]
+filter_groups = root
+filter_users = root
+reconnection_retries = 3
+
+[pam]
+reconnection_retries = 3
+
+[domain/default]
+ldap_id_use_start_tls = False
+ldap_schema = rfc2307bis
+ldap_search_base = dc=ourdomain,dc=net
+ldap_default_authtok_type = password
+krb5_server = ad01.ourdomain.net
+ldap_default_authtok = ldappassword!@#$
+id_provider = ldap
+auth_provider = krb5
+ldap_default_bind_dn = ldapauth@ourdomain.net
+chpass_provider = krb5
+ldap_uri = ldap://ad01.ourdomain.net/
+ldap_referrals = False
+krb5_realm = OURDOMAIN.NET
+enumerate = False
+cache_credentials = True
+krb5_kpasswd = ad01.ourdomain.net:749
+ldap_user_home_directory = unixHomeDirectory
+ldap_user_object_class = user
+ldap_tls_cacertdir = /etc/openldap/cacerts
+ldap_group_object_class = group

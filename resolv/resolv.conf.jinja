@@ -1,0 +1,9 @@
+# We use search instead of domain because it gives us multiple options
+search ourdomain.net example.com
+
+# Rotate between DNS servers for long-running processes that make multiple requests
+options rotate
+
+nameserver 192.168.0.1
+nameserver 192.168.0.2
+nameserver 192.168.0.3
